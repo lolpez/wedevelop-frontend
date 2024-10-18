@@ -24,12 +24,12 @@ This backend project uses:
 You can use these 2 test users to login to the app.
 ```
 username: ana_mejia
-password: ana_mejia
+password: ana_mejia-1
 ```
 
 ```
 username: luis_lopez
-password: luis_lopez
+password: luis_lopez-1
 ```
 
 There are multiple `john_smith` users with suffix from 1 to 10 as username and password, feel free to use them too i.e.
