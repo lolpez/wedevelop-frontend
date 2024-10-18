@@ -13,6 +13,7 @@ const ChatPage = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -34,6 +35,13 @@ const ChatPage = () => {
   }, [router]);
 
   if (loading) return <p>Loading...</p>;
+
+  setTimeout(() => {
+    if (window.location.pathname === '/chat'){
+      Cookies.remove('authToken');
+      router.push('/');
+    }
+  }, 5000);
 
   return (
     <div>

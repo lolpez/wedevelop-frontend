@@ -12,7 +12,7 @@ export default function Home() {
   const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const { setUser } = useAuth(); // Access setUser from context
+  const { setUser } = useAuth();
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2 test-id="title">Login</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label>Username:</label>

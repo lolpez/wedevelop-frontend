@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Sender from './sender';
 import { useAuth } from '../../../context/auth';
 import { IMessage } from '@/app/models/message';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const MessagesPage = ({ params }: { params: { id: string } }) => {
   const recipientUserId = params.id;
@@ -15,6 +17,7 @@ const MessagesPage = ({ params }: { params: { id: string } }) => {
   const [loading, setLoading] = useState(true);
   const [messageStatus, setMessageStatus] = useState<string>("");
   const { user } = useAuth();
+  const router = useRouter();
 
   const fetchUser = async () => {
     try {
@@ -29,6 +32,11 @@ const MessagesPage = ({ params }: { params: { id: string } }) => {
 
   const fetchMessages = async () => {
     try {
+      const token = Cookies.get('authToken');
+        if (!token) {
+          router.push('/');
+          return;
+        }
       const { data } = await axios.get<IChat>('http://localhost:3001/message', {
         params: {
           "senderUserId": user?._id,
@@ -68,7 +76,7 @@ const MessagesPage = ({ params }: { params: { id: string } }) => {
       <ul>
         {chat?.messages?.map((message) => (
           <li className='message' test-id={`message-${message._id}`} key={message._id}>
-            {styleMessage(message)}
+            <p style={{ whiteSpace: 'pre-line' }}>{styleMessage(message)}</p>
           </li>
         ))}
       </ul>

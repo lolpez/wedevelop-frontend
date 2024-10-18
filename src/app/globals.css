@@ -53,7 +53,7 @@ h1{
   margin-bottom: 10px;
 }
 
-input{
+input, textarea{
   margin: 10px 0px 10px 0px ;
   width: 80%;
   padding: 15px;

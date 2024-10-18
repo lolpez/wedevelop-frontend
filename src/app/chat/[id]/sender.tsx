@@ -36,14 +36,15 @@ const Sender: React.FC<SenderProps> = ({ recipientUserId, onMessageSent }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <input
+          <textarea
             test-id="message"
-            type='text'
             placeholder="Message"
             value={text}
             onChange={(e) => setText(e.target.value)}
             required
           />
+        </div>
+        <div>
           <button test-id="send-button" type="submit">
             Send Message
           </button>
